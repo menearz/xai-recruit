@@ -1,0 +1,99 @@
+/* ============================================================
+   THE DOMAIN — design tokens (single source of truth)
+   Canonical brand reference. Copy into any Domain-family app and
+   @import it FIRST. Every color, font, and structural value derives
+   from this file. No hex values may appear anywhere else.
+   ============================================================ */
+
+:root {
+  /* ---- Palette · surfaces (blue-cast indigo blacks) ---- */
+  --void:     #030A14;  /* deepest background */
+  --charcoal: #081119;  /* panel base */
+  --slate:    #0F1B26;  /* raised panel / cards */
+
+  /* ---- Palette · light ---- */
+  --cyan:     #24E0F2;  /* primary luminous cyan — accents, active, energy lines */
+  --cyan-hl:  #8CF9FF;  /* hard-light highlight / glow core */
+  --teal:     #0FB8A6;  /* secondary accent (seam strips) */
+  --amber:    #FFB020;  /* genuine alerts ONLY — its appearance is an event */
+
+  /* ---- Palette · text & structure ---- */
+  --text:     #DCF7FB;
+  --text-dim: #6E8A93;
+  --edge:     #1E3A44;  /* hairline borders, glowed with cyan */
+
+  /* ---- Derived light (rgba of the palette — no new hues) ---- */
+  --glow-core:  rgba(140, 249, 255, 0.9);   /* --cyan-hl */
+  --glow-halo:  rgba(36, 224, 242, 0.35);   /* --cyan */
+  --glow-faint: rgba(36, 224, 242, 0.12);
+  --glow-teal:  rgba(15, 184, 166, 0.25);   /* --teal */
+  --bevel-hl:   rgba(220, 247, 251, 0.07);  /* pale-alloy bevel highlight (--text) */
+  --panel-fill: linear-gradient(160deg, rgba(15, 27, 38, 0.92), rgba(8, 17, 25, 0.96));
+  --ink-40:     rgba(3, 10, 20, 0.4);       /* --void scrim */
+
+  /* ---- Type ---- */
+  --font-display: 'Orbitron', 'Exo 2', sans-serif;      /* headers, labels — uppercase, wide */
+  --font-body:    'Exo 2', system-ui, sans-serif;
+  --font-mono:    'Share Tech Mono', 'JetBrains Mono', monospace;  /* telemetry, HUD */
+
+  --text-xs:  0.6875rem;   /* 11px — telemetry */
+  --text-sm:  0.8125rem;   /* 13px — labels, meta */
+  --text-md:  0.9375rem;   /* 15px — body */
+  --text-lg:  1.1875rem;   /* 19px — panel titles */
+  --text-xl:  1.625rem;    /* 26px — section display */
+  --text-2xl: 2.375rem;    /* 38px — the wordmark */
+
+  --tracking-label: 0.18em; /* uppercase display labels */
+  --tracking-wide:  0.32em; /* wordmark / hero */
+
+  /* ---- Space (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  /* ---- Structure · the chamfer is the identity ---- */
+  --chamfer:     16px;  /* standard 45° corner cut */
+  --chamfer-sm:  8px;   /* small elements (nav cells, chips) */
+  --notch:       28px;  /* the asymmetric double-notch corner */
+  --hairline:    1px;
+
+  /* Standard hard-light plate: three 45° chamfers + one double-notched corner (top-right) */
+  --clip-panel: polygon(
+    var(--chamfer) 0,
+    calc(100% - var(--notch)) 0,
+    calc(100% - var(--notch) + 8px) 8px,
+    calc(100% - var(--chamfer)) 8px,
+    100% calc(var(--chamfer) + 8px),
+    100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%,
+    var(--chamfer) 100%,
+    0 calc(100% - var(--chamfer)),
+    0 var(--chamfer)
+  );
+  --clip-cell: polygon(
+    var(--chamfer-sm) 0,
+    100% 0,
+    100% calc(100% - var(--chamfer-sm)),
+    calc(100% - var(--chamfer-sm)) 100%,
+    0 100%,
+    0 var(--chamfer-sm)
+  );
+
+  /* ---- Motion (all gated by prefers-reduced-motion) ---- */
+  --dur-fast:  160ms;
+  --dur-med:   420ms;
+  --dur-slow:  1200ms;
+  --dur-trace: 6s;      /* energy line border traversal */
+  --ease-hl:   cubic-bezier(0.22, 0.9, 0.3, 1);  /* hard-light snap */
+
+  /* ---- Layers ---- */
+  --z-ambient:  0;    /* hard-light data stream, behind everything */
+  --z-panel:    1;
+  --z-nav:      10;
+  --z-overlay:  100;  /* scanlines */
+  --z-wake:     1000; /* wake / boot sequence covers everything */
+}
